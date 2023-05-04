@@ -25,3 +25,5 @@ _start:
   mov  ebx, 0
   int  0x80
   ; without proper exit will be "segmentation fault"
+  ; segmentation fault appear because programm try continue write to console
+  ; and cross to other program segment
