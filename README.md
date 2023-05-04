@@ -1,6 +1,7 @@
 # Assembler Codes Notes
 Assembler Codes and Notes on NASM
 
+- x86_64
 - Linux
 - NASM
 
