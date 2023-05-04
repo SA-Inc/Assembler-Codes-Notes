@@ -9,5 +9,5 @@ Assembler Codes and Notes on NASM
 all:
   nasm -f elf32 -o $(file).o $(file).asm
   ld -m elf_i386 -o $(file) $(file).o
-  rm $(file).olocalhost:~#
+  rm $(file).o
 ```
