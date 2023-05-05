@@ -45,6 +45,21 @@ print_string:
   ret
 
 
+print_string_lf:
+  call print_string
+  ; save ax state and push line feed
+  push eax
+  mov eax, 0Ah
+  push eax
+  ; move stack pointer address (points to LF symbol) and print
+  mov eax, esp
+  call print_string
+  ; remofe line feed and restore ax
+  pop eax
+  pop eax
+  ret
+
+
 quit:
   mov ebx, 0
   mov eax, 1
