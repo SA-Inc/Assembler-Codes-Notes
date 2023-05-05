@@ -25,11 +25,12 @@ print_string:
   push edx
   push ecx
   push ebx
-  ; 
+  ; ax = string length
   push eax
   call get_string_length
 
   mov edx, eax
+  ; restore start string address
   pop eax
 
   mov ecx, eax
