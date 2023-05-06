@@ -1,3 +1,52 @@
+atoi:
+  push ebx
+  push ecx
+  push edx
+  push esi
+  ; pointer of number (to convert) to si
+  mov esi, eax
+  mov eax, 0
+  mov ecx, 0
+
+multiply_loop:
+  ; reset lower and upper bytes
+  xor ebx, ebx
+  ; address of console argument digit (si = 0 index, cx = 1, 2, n indexes)
+  mov bl, [esi + ecx]
+  ; if lower byte out from range 0-9, exit from loop
+  cmp bl, 48
+  jl mul_finish
+  cmp bl, 57
+  jg mul_finish
+
+  ; if lower byte in range 0-9
+  ; convert ascii to decimal and add int result
+  sub bl, 48
+  add eax, ebx
+  ; multiplication for move by digit
+  mov ebx, 10
+  mul ebx
+  ; move digit address offset
+  inc ecx
+  jmp multiply_loop
+
+mul_finish:
+  ; check counter, if 0 - no more arguments, end function
+  cmp ecx, 0
+  je restore
+  ; at the end result we must divide by 10 for normalize
+  mov ebx, 10
+  div ebx
+
+restore:
+  pop esi
+  pop edx
+  pop ecx
+  pop ebx
+  ret
+
+
+
 print_int:
   ; in general: split int number into digits, cast to ascii representation and print one by one
   push eax
