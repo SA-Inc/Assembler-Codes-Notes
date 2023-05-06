@@ -18,3 +18,12 @@ all:
 ```bash
 make file=filename
 ```
+
+# Simple Function Execution
+```assembly
+mov dx, length
+mov cx, variable
+mov bx, file_descriptor
+mov ax, system_call
+int 0x80
+```
