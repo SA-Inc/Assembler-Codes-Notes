@@ -1,3 +1,61 @@
+print_int:
+  push eax
+  push ecx
+  push edx
+  push esi
+  ; byte counter (how many we should print)
+  mov ecx, 0
+
+divide_loop:
+  ; inc chars number
+  inc ecx
+  mov edx, 0
+  mov esi, 10
+  ; divide ax by si (in dx will be reminder)
+  idiv esi
+  ; cast to ascii
+  add edx, 48
+  ; push string representation on int
+  push edx
+  ; check can out int number be divided
+  cmp eax, 0
+  jnz divide_loop
+
+print_loop:
+  ; how many string ints in stack
+  dec ecx
+  ; print char
+  mov eax, esp
+  call print_string
+  ; remove last char
+  pop eax
+  cmp ecx, 0
+  jnz print_loop
+
+  pop esi
+  pop edx
+  pop ecx
+  pop eax
+  ret
+
+
+print_int_lf:
+  call print_int
+  ; save ax state
+  push eax
+  ; push line feed char and get address
+  mov eax, 0xA
+  push eax
+  mov eax, esp
+  ; print lf char
+  call print_string
+  ; remove lf
+  pop eax
+  ; restore ax state
+  pop eax
+  ret
+
+
 get_string_length:
   ; push for save previous register state
   push ebx
