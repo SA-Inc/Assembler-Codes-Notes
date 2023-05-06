@@ -1,4 +1,5 @@
 print_int:
+  ; in general: split int number into digits, cast to ascii representation and print one by one
   push eax
   push ecx
   push edx
